@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:09:00 by jnuncio-          #+#    #+#             */
-/*   Updated: 2023/06/08 19:53:49 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:11:37 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	open_maps(t_vars *vars, const char *pathname)
 	fd = open(pathname, 0, O_RDONLY);
 	if (fd < 0)
 		error_exit(vars, "Invalid map file.\n\nChoose one of the following (as a param):\
-		\n- map1.ber\n- map42.ber\n");
+		\n- map1\n- map42\n");
 	return (fd);
 }
 

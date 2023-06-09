@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 14:25:48 by jnuncio-          #+#    #+#             */
-/*   Updated: 2023/06/08 20:24:34 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:19:18 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 void	game_init(t_vars *vars)
 {
-	vars->map_path = ft_strjoin("maps/", vars->map_path);
+	char	*s;
+
+	s = ft_strjoin("maps/", vars->map_path);
+	vars->map_path = ft_strjoin(s, ".ber");
+	free(s);
+	if (ft_strncmp(vars->map_path + (ft_strlen(vars->map_path) - 4),
+			".ber", 4))
+		error_exit(vars, "It's not a '.ber' file.\n\nChoose one of the following (as a param):\
+		\n- map1\n- map42\n");
 	get_map(vars, 0, 0);
 	if (vars->map.mtx == NULL)
 		error_exit(vars, "Failed to read the map.\n");
@@ -36,7 +44,7 @@ int	main(int ac, char **av)
 	vars.map_path = av[1];
 	if (ac != 2)
 		ft_putstr_fd("Choose one of the following (as a param):\
-		\n- map1.ber\n- map42.ber\n", 1);
+		\n- map1\n- map42\n", 1);
 	else
 	{
 		game_init(&vars);
