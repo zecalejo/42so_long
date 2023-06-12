@@ -42,13 +42,11 @@ int	map_check(t_vars *vars)
 
 void	f_fill(t_vars *vars, int hrz, int vrt)
 {
-	char	p;
-
-	p = vars->map_cpy.mtx[vrt][hrz];
 	if (hrz < 0 || vrt < 0 || hrz >= vars->map_cpy.w || vrt >= vars->map_cpy.h
-		|| p == '1' || p == 'F')
+		|| vars->map_cpy.mtx[vrt][hrz] == '1' ||
+			vars->map_cpy.mtx[vrt][hrz] == 'F')
 		return ;
-	else if (p == 'C')
+	else if (vars->map_cpy.mtx[vrt][hrz] == 'C')
 		vars->map_cpy.colectibles++;
 	vars->map_cpy.mtx[vrt][hrz] = 'F';
 	f_fill(vars, hrz + 1, vrt);
